@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>devices list</title>
+  </head>
+  <body>
+    <div class="devices">
+      {% for device in devices %}
+      <div class="device">
+        <img src="{{ device.image.url }}" style="max-height:200px; max-width:200px;">
+        <h2><a href="#">{{ device.name }}</a></h2>
+        <p>{{ device.description }}</p>
+        <p>{{ device.rate }} / 10</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="experiments">
+      {% for experiment in experiments %}
+      <div class="experiment">
+        <h2><a href="#">{{ experiment.title }}</a></h2>
+        <p>{{ experiment.description }}</p>
+        <p>{{ experiment.duration }} / 10</p>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
