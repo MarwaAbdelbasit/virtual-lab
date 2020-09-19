@@ -1,6 +1,32 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
+
+class Accounts(models.Model):
+    email = models.EmailField(verbose_name="user e-mail", max_length=255, unique=True)
+    username = models.CharField(max_length=30, unique=True)
+    phone = models.DecimalField(max_digits=11, decimal_places=0)
+    university = models.CharField(max_length=30)
+    faculty = models.CharField(max_length=100)
+    date_of_birth = models.DateField(verbose_name="date of birth", auto_now=False, auto_now_add=False)
+    country = models.CharField(max_length=30)
+    password = models.CharField(max_length=100, null=False)
+
+    STUDENT = 'student'
+    INSTITUTE = 'institute'
+    types = [
+        (STUDENT, 'Student'),
+        (INSTITUTE, 'Institute'),
+    ]
+    user_type = models.CharField(max_length=10, choices=types, default=STUDENT)
+
+    def is_upperclass(self):
+        return self.type in {self.STUDENT, self.INSTITUTE}
+
+    def __str__(self):
+        return self.username
+
 
 # devices model
 class Devices(models.Model):
