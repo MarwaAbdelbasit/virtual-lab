@@ -1,0 +1,9 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <form class="AddQuestion" action="{% url 'app:Add_Question' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}

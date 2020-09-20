@@ -41,7 +41,7 @@ class Reservation(models.Model):
         return f'{self.user} has booked {self.Device}from {self.Start_time} to {self.Finish_time}'        
 
 # FAQ model
-class FAQ(models.Model):
+class faq(models.Model):
     Question = models.CharField(max_length=100)
     Answer = models.CharField(primary_key=True, max_length=10)
    
