@@ -4,6 +4,7 @@
   <form class="register" action="{% url 'app:register' %}" method="post">
     {% csrf_token %}
     {{ form }}
+    <p>date of birth in the formate (yyyy-mm-dd)</p>
     <input type="submit" value="Register">
   </form>
 {% endblock %}

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'app',
 ]
 
+AUTH_USER_MODEL = 'app.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -68,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-# AUTH_USER_MODEL = 'app.Accounts'
+
 
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
