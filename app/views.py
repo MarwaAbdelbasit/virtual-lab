@@ -8,8 +8,8 @@ def devices(request):
     experiments = Experiments.objects.all()
     return render(request, 'app/devices.html', {'devices':devices,
     'experiments': experiments})
-#def FAQ(request):
-    FAQ = FAQ.objects.all()
+def faq(request):
+    faq = FAQ.objects.all()
     return render(request, 'app/faq.html', {'faq':faq})    
 
 def register(request):
