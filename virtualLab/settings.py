@@ -55,7 +55,7 @@ ROOT_URLCONF = 'virtualLab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +67,10 @@ TEMPLATES = [
         },
     },
 ]
+
+# AUTH_USER_MODEL = 'app.Accounts'
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
 WSGI_APPLICATION = 'virtualLab.wsgi.application'
 

@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Devices, Experiments,faq
+from django.shortcuts import render, redirect
+from .models import Devices, Experiments, Accounts,FAQ
 from . import forms
 
 # Create your views here.
@@ -8,23 +8,38 @@ def devices(request):
     experiments = Experiments.objects.all()
     return render(request, 'app/devices.html', {'devices':devices,
     'experiments': experiments})
-def A_Q(request):
-     if request.method == 'POST':
-        form = forms.AddQuestion(request.POST)
+#def FAQ(request):
+    FAQ = FAQ.objects.all()
+    return render(request, 'app/faq.html', {'faq':faq})    
+
+def register(request):
+    if request.method == 'POST':
+        form = forms.AccountsForm(request.POST)
         if form.is_valid():
             # save account to database
             form.save()
             return redirect('home')
-     else:
-        form = forms.AddQuestion()
-     return render(request, 'app/A_Q.html', {'form': form})
-def Add_device(request):
-     if request.method == 'POST':
-        form = forms.AddDevice(request.POST)
+    else:
+        form = forms.AccountsForm()
+    return render(request, 'app/register.html', {'form': form})
+
+def AddQuestion(request):
+    if request.method == 'POST':
+        form = forms.AddQForm(request.POST)
         if form.is_valid():
             # save account to database
             form.save()
             return redirect('home')
-     else:
-        form = forms.AddDevice()
-     return render(request, 'app/Add-device.html', {'form': form})
+    else:
+        form = forms.AddQForm()
+    return render(request, 'app/AddDevice.html', {'form': form})
+def AddDevice(request):
+    if request.method == 'POST':
+        form = forms.AddDeviceForm(request.POST)
+        if form.is_valid():
+            # save account to database
+            form.save()
+            return redirect('home')
+    else:
+        form = forms.AddDeviceForm()
+    return render(request, 'app/AddDevice.html', {'form': form})          

@@ -6,6 +6,7 @@
   </head>
   <body>
     <div class="devices">
+      <a href="{% url 'app:AddDevice' %}">Add new device</a>
       {% for device in devices %}
       <div class="device">
         <img src="{{ device.image.url }}" style="max-height:200px; max-width:200px;">

@@ -5,7 +5,8 @@ app_name = 'app'
 
 urlpatterns = [
     path('devices/', views.devices, name='devices'),
-    path('FAQ/', views.FAQ, name='FAQ'),
-    path('Add_Question', views.A_Q, name='Add_Question'),
-    path('Add_Device', views.Add_device, name='Add_Device'),
+    #path('FAQ/', views.FAQ, name='FAQ'),
+    path('register/', views.register, name='register'),
+    path('Add/', views.AddQuestion, name='AddQuestion'),
+    path('AddDevice/', views.AddDevice, name='AddDevice'),
 ]
