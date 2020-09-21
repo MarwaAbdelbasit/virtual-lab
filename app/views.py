@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.utils.http import is_safe_url
 from .forms import RegisterForm, LoginForm
+from django.contrib.auth import login, logout
 
 # Create your views here.
 def devices(request):
@@ -42,13 +43,7 @@ class Login_view(FormView):
                 return redirect("/")
         return super(Login_view, self).form_invalid(form)
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = forms.AccountsForm(request.POST)
-#         if form.is_valid():
-#             # save account to database
-#             form.save()
-#             return redirect('home')
-#     else:
-#         form = forms.AccountsForm()
-#     return render(request, 'app/register.html', {'form': form})
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('/')

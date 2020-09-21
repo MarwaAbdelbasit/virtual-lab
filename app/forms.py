@@ -2,6 +2,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.conf import settings
 
 User = get_user_model()
 
@@ -59,6 +60,7 @@ class RegisterForm(forms.ModelForm):
     """
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    date_of_birth = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
 
     class Meta:
         model = User
