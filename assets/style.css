@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+textarea:focus,
+input[type=submit]:focus {
+  outline: none;
+}
+
+
+/* login form */
+.login .login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.login_form label {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login_form input[type=email],
+.login_form input[type=password] {
+  overflow: visible;
+  padding: 5px 20px;
+  border: none;
+  border-bottom: 1px solid #5B82A8;
+}
+
+.login_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: #03A9F4;
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+
+/* logout button */
+.logout_form .logout_button {
+  border: none;
+  background: none;
+  margin-left: 25px;
+}
+
+
+
+/* registeration form */
+.register .register_form{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.register_form label{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.register_form input[type=text],
+.register_form input[type=email],
+.register_form input[type=password] {
+  border: none;
+  border-bottom: 1px solid #5B82A8;
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.register_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: #03A9F4;
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+/* add a question form */
+.faq .AddQ_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.AddQ_form label {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.AddQ_form input[type=text],
+.AddQ_form textarea {
+  border: none;
+  border-bottom: 1px solid #5B82A8;
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.AddQ_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: #03A9F4;
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+
+
+/* questions list */
+.questions a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: #03A9F4;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+
+/* Devices list */
+.devices a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: #03A9F4;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+
+/* add a device form */
+.AddDevice .AddDevice_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.AddDevice_form label {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.AddDevice_form input[type=text],
+.AddDevice_form input[type=number],
+.AddDevice_form textarea {
+  border: none;
+  border-bottom: 1px solid #5B82A8;
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.AddDevice_form input[type=file],
+.AddDevice_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: #03A9F4;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+}
