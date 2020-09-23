@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
     )
+from django.conf import settings
 
 # Create your models here.
 
@@ -142,3 +143,24 @@ class Experiments(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# Reservation model
+class Reservation(models.Model):
+     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=True)
+     Device=models.ForeignKey(Devices,on_delete=models.CASCADE,default=True)
+     Start_time = models.DateTimeField()
+     Finish_time = models.DateTimeField()
+
+     def __str__(self):
+        return f'{self.user} has booked {self.Device}from {self.Start_time} to {self.Finish_time}'
+
+# FAQ model
+class FAQ(models.Model):
+    question_id = models.IntegerField(primary_key=True)
+    Question = models.CharField(max_length=100)
+    Answer = models.CharField(max_length=255)
+
+
+    def __str__(self):
+        return f'{self.Answer} for {self.Question}'

@@ -5,11 +5,12 @@
   {% for device in devices %}
   <div class="device">
     <img src="{{ device.image.url }}" style="max-height:200px; max-width:200px;">
-    <h2><a href="#">{{ device.name }}</a></h2>
+    <h2>{{ device.name }}</h2>
     <p>{{ device.description }}</p>
     <p>{{ device.rate }} / 10</p>
   </div>
   {% endfor %}
+  <a href="{% url 'app:AddDevice' %}">Add new Device</a>
 </div>
 
 <div class="experiments">

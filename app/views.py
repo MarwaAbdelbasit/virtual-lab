@@ -3,8 +3,10 @@ from django.views.generic import CreateView, FormView
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.utils.http import is_safe_url
-from .forms import RegisterForm, LoginForm
+from . import forms
+from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm
 from django.contrib.auth import login, logout
+from .models import  *
 
 # Create your views here.
 def devices(request):
@@ -20,7 +22,7 @@ class Register_view(CreateView):
 
 class Login_view(FormView):
     form_class = LoginForm
-    success_url = '/'
+    success_url = '/app/devices.html'
     template_name = 'app/login.html'
 
     def form_valid(self, form):
@@ -47,3 +49,32 @@ def logout_view(request):
     if request.method == 'POST':
         logout(request)
         return redirect('/')
+
+
+def AddDevice(request):
+    if request.method == 'POST':
+        form = AddDeviceForm(request.POST)
+        if form.is_valid():
+            # save account to database
+            form.save()
+            return redirect('home')
+    else:
+        form = AddDeviceForm()
+    return render(request, 'app/AddDevice.html', {'form': form})
+
+
+def AddQuestion(request):
+    if request.method == 'POST':
+        form = AddQForm(request.POST)
+        if form.is_valid():
+            # save account to database
+            form.save()
+            return redirect('home')
+    else:
+        form = AddQForm()
+    return render(request, 'app/AddQ.html', {'form': form})
+
+
+def faq(request):
+    faqs = FAQ.objects.all()
+    return render(request, 'app/FAQ.html', {'faqs':faqs})

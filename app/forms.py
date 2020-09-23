@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.conf import settings
+from .models import *
 
 User = get_user_model()
 
@@ -87,3 +88,22 @@ class RegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email')
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+# add devices form
+class AddDeviceForm(forms.ModelForm):
+    # description = forms.CharField(widget=forms.Textarea,max_length=4000)
+
+    class Meta:
+        model = Devices
+        fields = ('name', 'status', 'description', 'rate', 'review', 'category', 'image')
+
+
+# add question form
+class AddQForm(forms.ModelForm):
+    # Question = forms.CharField(widget=forms.PasswordInput)
+    Answer = forms.CharField(widget=forms.Textarea,max_length=4000)
+
+    class Meta:
+        model = FAQ
+        fields = ('Question', 'Answer')
