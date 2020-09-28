@@ -31,6 +31,10 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>
+      <li class="nav-item">
+        <a href="{% url 'app:Reservation' %}" class="nav-link"> Reservation</a>
+      </li>
+
     </ul>
     <ul class="navbar-nav">
       {% if user.is_authenticated %}
