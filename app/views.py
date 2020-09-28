@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.utils.http import is_safe_url
 from . import forms
-from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm,ReserveForm
+from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm
 from django.contrib.auth import login, logout
 from .models import  *
 
@@ -78,14 +78,3 @@ def AddQuestion(request):
 def faq(request):
     faqs = FAQ.objects.all()
     return render(request, 'app/FAQ.html', {'faqs':faqs})
-
-def Reservation(request):
-    if request.method == 'POST':
-        form = ReserveForm(request.POST)
-        if form.is_valid():
-            # save account to database
-            form.save()
-            return redirect('home')
-    else:
-        form = ReserveForm()
-    return render(request, 'app/Reserve.html', {'form': form})    

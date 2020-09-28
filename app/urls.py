@@ -12,6 +12,4 @@ urlpatterns = [
     path('AddDevice/', views.AddDevice, name='AddDevice'),
     path('Add/', views.AddQuestion, name='AddQuestion'),
     path('FAQ/', views.faq, name='faq'),
-    path('Reservation/', views.Reservation, name='Reservation'),
-
 ]
