@@ -1,9 +1,12 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-  <form class="AddQ" action="{% url 'app:AddQuestion' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Add">
-  </form>
+  <div class="faq">
+    <h1>Add Question</h1>
+    <form class="AddQ_form" action="{% url 'app:AddQuestion' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Add">
+    </form>
+  </div>
 {% endblock %}

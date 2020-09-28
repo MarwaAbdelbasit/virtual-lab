@@ -1,32 +1,119 @@
 from django.db import models
+from django.contrib.auth.models import (
+    AbstractBaseUser, BaseUserManager
+    )
 from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 
-class Accounts(models.Model):
-    email = models.EmailField(verbose_name="user e-mail", max_length=255, unique=True)
-    username = models.CharField(max_length=30, unique=True)
-    phone = models.DecimalField(max_digits=11, decimal_places=0)
+class UserManager(BaseUserManager):
+    def create_user(self, full_name, email, university, faculty, date_of_birth=None, password=None, is_active=True, is_staff=False, is_admin=False):
+        # takes whats in the REQUIRED_FIELDS arguments
+        if not email:
+            raise ValueError("user must have an email")
+        if not password:
+            raise ValueError("user must have a password")
+        if not full_name:
+            raise ValueError("user must have a full name")
+        if not university:
+            raise ValueError("user must have a university")
+        if not faculty:
+            raise ValueError("user must have a faculty")
+
+        user_obj = self.model(
+            email = self.normalize_email(email),
+            full_name = full_name,
+            university = university,
+            faculty = faculty,
+        )
+        user_obj.set_password(password) # change user password
+        user_obj.active = is_active
+        user_obj.staff = is_staff
+        user_obj.admin = is_admin
+        user_obj.save(using=self._db)
+        return user_obj
+
+    def create_staffuser(self, full_name, email, university, faculty, date_of_birth=None, password=None):
+        user = self.create_user(
+            email,
+            full_name,
+            university,
+            faculty,
+            date_of_birth = date_of_birth,
+            password=password,
+            is_staff=True
+        )
+        return user
+
+    def create_superuser(self, full_name, email, university, faculty, date_of_birth=None, password=None):
+        user = self.create_user(
+            email,
+            full_name,
+            university,
+            faculty,
+            date_of_birth = date_of_birth,
+            password=password,
+            is_staff=True,
+            is_admin=True
+        )
+        return user
+
+class User(AbstractBaseUser):
+    email = models.EmailField(max_length=255, unique=True)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
     university = models.CharField(max_length=30)
     faculty = models.CharField(max_length=100)
-    date_of_birth = models.DateField(verbose_name="date of birth", auto_now=False, auto_now_add=False)
     country = models.CharField(max_length=30)
-    password = models.CharField(max_length=100, null=False)
+    date_of_birth = models.DateField(verbose_name="date of birth", auto_now=False, auto_now_add=False)
 
-    STUDENT = 'student'
-    INSTITUTE = 'institute'
-    types = [
-        (STUDENT, 'Student'),
-        (INSTITUTE, 'Institute'),
-    ]
-    user_type = models.CharField(max_length=10, choices=types, default=STUDENT)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True) # can login
+    staff = models.BooleanField(default=False) # staff user non superuser
+    admin = models.BooleanField(default=False) # superuser
 
-    def is_upperclass(self):
-        return self.type in {self.STUDENT, self.INSTITUTE}
+    USERNAME_FIELD = 'email' # username
+    REQUIRED_FIELDS = ['full_name', 'university', 'faculty'] # python manage.py createsuperuser
+
+    objects = UserManager()
 
     def __str__(self):
-        return self.username
+        return self.email
+
+    def get_full_name(self):
+        return self.full_name
+
+    def get_university(self):
+        return self.university
+
+    def get_faculty(self):
+        return self.faculty
+
+    def get_date_of_birth(self):
+        if self.date_of_birth:
+            return self.date_of_birth
+        return self.email
+
+    def short_name(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+    @property
+    def is_staff(self):
+        return self.staff
+
+    @property
+    def is_admin(self):
+        return self.admin
+
+    @property
+    def is_active(self):
+        return self.active
+
 
 
 # devices model
@@ -56,22 +143,24 @@ class Experiments(models.Model):
 
     def __str__(self):
         return self.title
+
+
 # Reservation model
 class Reservation(models.Model):
      user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=True)
      Device=models.ForeignKey(Devices,on_delete=models.CASCADE,default=True)
      Start_time = models.DateTimeField()
      Finish_time = models.DateTimeField()
-    
+
      def __str__(self):
-        return f'{self.user} has booked {self.Device}from {self.Start_time} to {self.Finish_time}'        
+        return f'{self.user} has booked {self.Device}from {self.Start_time} to {self.Finish_time}'
 
 # FAQ model
 class FAQ(models.Model):
+    question_id = models.IntegerField(primary_key=True)
     Question = models.CharField(max_length=100)
-    Answer = models.CharField(primary_key=True, max_length=10)
-   
+    Answer = models.CharField(max_length=255)
+
 
     def __str__(self):
-        return f'{self.Answer} for {self.Question}'        
-
+        return f'{self.Answer} for {self.Question}'

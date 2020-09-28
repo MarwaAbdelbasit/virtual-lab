@@ -1,11 +1,15 @@
-  <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Question list</title>
-  </head>
-  <body>
-      <a href="{% url 'app:AddQuestion' %}">Add new Question</a>
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <div class="questions">
+    {% for faq in faqs %}
+    <div class="question">
+      <h3>Qusetion number ({{ faq.question_id }}):</h3>
+      <p>{{ faq.Question }}</p>
+      <h5>Answer:</h5>
+      <p>{{ faq.Answer }}</p>
     </div>
-  </body>
-</html>
+    {% endfor %}
+    <a href="{% url 'app:AddQuestion' %}">Add new Question</a>
+  </div>
+{% endblock %}
