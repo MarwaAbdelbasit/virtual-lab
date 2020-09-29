@@ -7,6 +7,7 @@ from . import forms
 from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm,ReserveForm
 from django.contrib.auth import login, logout
 from .models import  *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def devices(request):
@@ -50,7 +51,7 @@ def logout_view(request):
         logout(request)
         return redirect('/')
 
-
+@login_required(login_url='/app/login/')
 def AddDevice(request):
     if request.method == 'POST':
         form = AddDeviceForm(request.POST)
@@ -62,7 +63,7 @@ def AddDevice(request):
         form = AddDeviceForm()
     return render(request, 'app/AddDevice.html', {'form': form})
 
-
+@login_required(login_url='/app/login/')
 def AddQuestion(request):
     if request.method == 'POST':
         form = AddQForm(request.POST)
@@ -79,13 +80,19 @@ def faq(request):
     faqs = FAQ.objects.all()
     return render(request, 'app/FAQ.html', {'faqs':faqs})
 
+
+@login_required(login_url='/app/login/')
 def Reservation(request):
     if request.method == 'POST':
         form = ReserveForm(request.POST)
         if form.is_valid():
             # save account to database
-            form.save()
+            instance_of_reservation = form.save(commit=False)
+            # commit=False: means hang on a minute we are going to save this but don't commit to the action yet
+            instance_of_reservation.user = request.user
+            # user on left of the equal sign refers to the user data field in reservation model
+            instance_of_reservation.save()
             return redirect('home')
     else:
         form = ReserveForm()
-    return render(request, 'app/Reserve.html', {'form': form})    
+    return render(request, 'app/Reserve.html', {'form': form})

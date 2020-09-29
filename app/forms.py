@@ -108,10 +108,12 @@ class AddQForm(forms.ModelForm):
     class Meta:
         model = FAQ
         fields = ('Question', 'Answer')
+
+
 # add Reservation form
 class ReserveForm(forms.ModelForm):
     Start_time = forms.DateTimeField(initial=datetime.date.today)
     Finish_time = forms.DateTimeField(initial=datetime.date.today)
     class Meta:
         model = Reservation
-        fields = ('user', 'Device', 'Start_time', 'Finish_time')        
+        fields = ('Device', 'Start_time', 'Finish_time')        

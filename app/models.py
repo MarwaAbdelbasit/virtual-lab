@@ -64,7 +64,7 @@ class User(AbstractBaseUser):
     university = models.CharField(max_length=30)
     faculty = models.CharField(max_length=100)
     country = models.CharField(max_length=30)
-    date_of_birth = models.DateField(verbose_name="date of birth", auto_now=False, auto_now_add=False)
+    date_of_birth = models.DateField(verbose_name="date of birth", auto_now=False, auto_now_add=False, null=True)
 
     timestamp = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True) # can login
@@ -88,10 +88,10 @@ class User(AbstractBaseUser):
     def get_faculty(self):
         return self.faculty
 
-    def get_date_of_birth(self):
-        if self.date_of_birth:
-            return self.date_of_birth
-        return self.email
+    # def get_date_of_birth(self):
+    #     if self.date_of_birth:
+    #         return self.date_of_birth
+    #     return self.email
 
     def short_name(self):
         return self.email
@@ -137,8 +137,8 @@ class Experiments(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     experiment_id = models.IntegerField(primary_key=True)
-    device_name = models.ForeignKey(Devices, on_delete=models.PROTECT)
-    # user_id = models.ForeignKey(Users, on_delete=RESTRICT)
+    device_name = models.ForeignKey(Devices, on_delete=models.CASCADE)
+    user_exp = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=True)
     duration = models.DurationField()
 
     def __str__(self):
@@ -147,8 +147,8 @@ class Experiments(models.Model):
 
 # Reservation model
 class Reservation(models.Model):
-     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=True)
-     Device=models.ForeignKey(Devices,on_delete=models.CASCADE,default=True)
+     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=True)
+     Device=models.OneToOneField(Devices,on_delete=models.CASCADE,default=True)
      Start_time = models.DateTimeField()
      Finish_time = models.DateTimeField()
 
