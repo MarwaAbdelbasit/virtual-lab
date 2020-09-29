@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="experiment">
+  <h2>start a new experiment</h2>
+  <form class="experiment_form" action="{% url 'app:Experiment' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Start">
+  </form>
+</div>
+{% endblock %}

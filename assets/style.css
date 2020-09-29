@@ -1,3 +1,8 @@
+/* colors */
+:root {
+  --purple-color: #83498c;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -31,14 +36,14 @@ input[type=submit]:focus {
   overflow: visible;
   padding: 5px 20px;
   border: none;
-  border-bottom: 1px solid #5B82A8;
+  border-bottom: 1px solid var(--purple-color);
 }
 
 .login_form input[type=submit] {
   border: none;
   padding: 10px 30px;
   font-weight: bold;
-  background-color: #03A9F4;
+  background-color: var(--purple-color);
   color: #fff;
   border-radius: 5px;
   margin: 20px 0 0 0;
@@ -70,7 +75,7 @@ input[type=submit]:focus {
 .register_form input[type=email],
 .register_form input[type=password] {
   border: none;
-  border-bottom: 1px solid #5B82A8;
+  border-bottom: 1px solid var(--purple-color);
   margin-bottom: 10px;
   width: 60%;
 }
@@ -79,7 +84,7 @@ input[type=submit]:focus {
   border: none;
   padding: 10px 30px;
   font-weight: bold;
-  background-color: #03A9F4;
+  background-color: var(--purple-color);
   color: #fff;
   border-radius: 5px;
   margin: 20px 0 0 0;
@@ -101,7 +106,7 @@ input[type=submit]:focus {
 .AddQ_form input[type=text],
 .AddQ_form textarea {
   border: none;
-  border-bottom: 1px solid #5B82A8;
+  border-bottom: 1px solid var(--purple-color);
   margin-bottom: 10px;
   width: 60%;
 }
@@ -110,7 +115,7 @@ input[type=submit]:focus {
   border: none;
   padding: 10px 30px;
   font-weight: bold;
-  background-color: #03A9F4;
+  background-color: var(--purple-color);
   color: #fff;
   border-radius: 5px;
   margin: 20px 0 0 0;
@@ -123,7 +128,7 @@ input[type=submit]:focus {
   border: none;
   padding: 10px 30px;
   font-weight: bold;
-  background-color: #03A9F4;
+  background-color: var(--purple-color);
   color: #fff;
   border-radius: 5px;
   margin-top: 40px;
@@ -137,7 +142,7 @@ input[type=submit]:focus {
   border: none;
   padding: 10px 30px;
   font-weight: bold;
-  background-color: #03A9F4;
+  background-color: var(--purple-color);
   color: #fff;
   border-radius: 5px;
   margin-top: 40px;
@@ -163,7 +168,7 @@ input[type=submit]:focus {
 .AddDevice_form input[type=number],
 .AddDevice_form textarea {
   border: none;
-  border-bottom: 1px solid #5B82A8;
+  border-bottom: 1px solid var(--purple-color);
   margin-bottom: 10px;
   width: 60%;
 }
@@ -173,8 +178,120 @@ input[type=submit]:focus {
   border: none;
   padding: 10px 30px;
   font-weight: bold;
-  background-color: #03A9F4;
+  background-color: var(--purple-color);
   color: #fff;
   border-radius: 5px;
   margin-top: 20px;
+}
+
+
+
+/* intro part of home page */
+.intro {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.intro .left a {
+  text-decoration: none;
+  background-color: var(--purple-color);
+  color: #fff;
+  padding: 10px 30px;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.intro .left a:hover {
+  box-shadow: 0px 0px 10px 0px #999;
+}
+
+
+
+/* reservation form */
+.Reservation .Reservation_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.Reservation_form label {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Reservation_form select,
+.Reservation_form input[type=text] {
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.Reservation_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+
+
+/* student interface */
+.myCard a {
+  text-decoration: none;
+  background-color: var(--purple-color);
+  color: #fff;
+  padding: 10px 30px;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.myCard a:hover {
+  box-shadow: 0px 0px 10px 0px #999;
+  text-decoration: none;
+}
+
+
+
+/* experiment form */
+.experiment .experiment_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.experiment_form label {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.experiment_form input[type=text],
+.experiment_form input[type=number],
+.experiment_form textarea,
+.experiment_form select {
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.experiment_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
 }

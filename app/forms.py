@@ -116,4 +116,12 @@ class ReserveForm(forms.ModelForm):
     Finish_time = forms.DateTimeField(initial=datetime.date.today)
     class Meta:
         model = Reservation
-        fields = ('Device', 'Start_time', 'Finish_time')        
+        fields = ('Device', 'Start_time', 'Finish_time')
+
+
+
+# experiment form
+class ExperimentsForm(forms.ModelForm):
+    class Meta:
+        model = Experiments
+        fields = ('title', 'description', 'experiment_id', 'device_name', 'duration')

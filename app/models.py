@@ -65,6 +65,14 @@ class User(AbstractBaseUser):
     faculty = models.CharField(max_length=100)
     country = models.CharField(max_length=30)
     date_of_birth = models.DateField(verbose_name="date of birth", auto_now=False, auto_now_add=False, null=True)
+    STUDENT = 'S'
+    INSTITUTE = 'I'
+    user_types = [
+        (STUDENT, 'Student'),
+        (INSTITUTE, 'Institute'),
+    ]
+    type = models.CharField(max_length=1, choices=user_types, default=STUDENT)
+    Institute_id = models.IntegerField()
 
     timestamp = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True) # can login
@@ -88,10 +96,10 @@ class User(AbstractBaseUser):
     def get_faculty(self):
         return self.faculty
 
-    # def get_date_of_birth(self):
-    #     if self.date_of_birth:
-    #         return self.date_of_birth
-    #     return self.email
+    def get_date_of_birth(self):
+        if self.date_of_birth:
+            return self.date_of_birth
+        return self.email
 
     def short_name(self):
         return self.email
@@ -101,6 +109,15 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+    def user_type(self):
+        is_student = True
+        is_institute_student = True
+        if (self.type == STUDENT) & (self.Institute_id == null):
+            return student
+        elif (self.type == 'INSTITUTE'):
+            self.USERNAME_FIELD = 'Institute_id'
+            return is_institute_student
 
     @property
     def is_staff(self):

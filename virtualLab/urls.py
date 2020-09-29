@@ -5,9 +5,12 @@ from django.conf.urls.static import static  # allow us to say where the media ur
 from django.conf import settings
 from . import views
 
+# app_name = 'lab'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.base_layout_view, name='home'),
+    path('home/', views.home_view, name = 'home_page'),
     path('app/', include('app.urls')),
 ]
 
