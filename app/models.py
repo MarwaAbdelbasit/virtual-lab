@@ -181,3 +181,21 @@ class FAQ(models.Model):
 
     def __str__(self):
         return f'{self.Answer} for {self.Question}'
+
+# plans model
+class Plan(models.Model):
+    plan_name = models.CharField(max_length=100)
+    price = models.CharField(max_length=100)
+    feauters_of_plan = models.TextField()
+
+
+    def __str__(self):
+        return f'{self.price} and {self.feauters_of_plan}for {self.plan_name}'
+# Contact model
+class Contact_Us(models.Model):
+    Subject = models.CharField(max_length=100)
+    Message = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return f'{self.Subject} and {self.message}'        

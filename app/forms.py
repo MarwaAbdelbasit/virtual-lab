@@ -125,3 +125,19 @@ class ExperimentsForm(forms.ModelForm):
     class Meta:
         model = Experiments
         fields = ('title', 'description', 'experiment_id', 'device_name', 'duration')
+# Pricing form
+class PricingForm(forms.ModelForm):
+    class Meta:
+        model = Plan
+        fields = ('plan_name', 'price', 'feauters_of_plan')
+
+# AddPlan form
+class AddPlan(forms.ModelForm):
+    class Meta:
+        model = Plan
+        fields = ('plan_name', 'price', 'feauters_of_plan')
+# ContactUs form
+class Contact_UsForm(forms.ModelForm):
+    class Meta:
+        model = Contact_Us
+        fields = ('Subject', 'Message')                

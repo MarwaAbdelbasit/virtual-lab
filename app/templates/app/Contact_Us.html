@@ -1,0 +1,15 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <div class="ContactUs">
+    <h1>Send A message</h1>
+    <form class="ContactUs_form" action="{% url 'app:Contact_Us' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Send">
+          <h2>How to Reach Us</h2>
+          <h7>Vlab@example.com</h7>
+          <h7>01105*****</h7>
+    </form>
+  </div>
+{% endblock %}

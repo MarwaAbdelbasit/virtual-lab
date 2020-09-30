@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.utils.http import is_safe_url
 from . import forms
-from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm, ReserveForm, ExperimentsForm
+from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm, ReserveForm, ExperimentsForm,PricingForm,Contact_UsForm
 from django.contrib.auth import login, logout
 from .models import  *
 from django.contrib.auth.decorators import login_required
@@ -116,3 +116,29 @@ def Experiment(request):
     else:
         form = ExperimentsForm()
     return render(request, 'app/experiment.html', {'form': form})
+#View of pricing
+def Plan(request):
+   Plans = Plan.objects.all()
+   return render(request, 'app/Pricing.html', {'Plans':Plans})
+#View of Add plan
+def AddPlan(request):
+    if request.method == 'POST':
+        form = PricingForm(request.POST)
+        if form.is_valid():
+            # save account to database
+            form.save()
+            return redirect('home')
+    else:
+        form = PricingForm()
+    return render(request, 'app/Pricing.html', {'form': form})
+#View of Contact us    
+def Contact_Us(request):
+    if request.method == 'POST':
+        form = Contact_UsForm(request.POST)
+        if form.is_valid():
+            # save account to database
+            form.save()
+            return redirect('home')
+    else:
+        form = Contact_UsForm()
+    return render(request, 'app/Contact_Us.html', {'form': form})             

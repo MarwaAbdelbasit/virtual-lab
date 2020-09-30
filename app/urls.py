@@ -15,4 +15,10 @@ urlpatterns = [
     path('Reservation/', views.Reservation, name='Reservation'),
     path('student_interface/', views.student_interface, name='student_interface'),
     path('experiment/', views.Experiment, name='Experiment'),
+    path('Pricing/', views.Plan, name='Pricing'),
+    path('AddPlan/', views.AddPlan, name='AddPlan'),
+    path('Contact_Us/', views.Contact_Us, name='Contact_Us'),
+
+
+
 ]
