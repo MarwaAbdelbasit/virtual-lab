@@ -10,7 +10,10 @@
     <p>{{ device.rate }} / 10</p>
   </div>
   {% endfor %}
+
+  {% if user.is_admin %}
   <a href="{% url 'app:AddDevice' %}">Add new Device</a>
+  {% endif %}
 </div>
 
 <div class="experiments">

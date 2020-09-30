@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.conf import settings
 from .models import *
+import datetime
 
 User = get_user_model()
 
@@ -107,3 +108,20 @@ class AddQForm(forms.ModelForm):
     class Meta:
         model = FAQ
         fields = ('Question', 'Answer')
+
+
+# add Reservation form
+class ReserveForm(forms.ModelForm):
+    Start_time = forms.DateTimeField(initial=datetime.date.today)
+    Finish_time = forms.DateTimeField(initial=datetime.date.today)
+    class Meta:
+        model = Reservation
+        fields = ('Device', 'Start_time', 'Finish_time')
+
+
+
+# experiment form
+class ExperimentsForm(forms.ModelForm):
+    class Meta:
+        model = Experiments
+        fields = ('title', 'description', 'experiment_id', 'device_name', 'duration')
