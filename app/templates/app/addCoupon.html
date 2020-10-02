@@ -1,0 +1,21 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <div class="addCoupon">
+    <button class="generateCouponButton" onclick="generate_random_number()">Generate a coupon</button>
+    <p id="random_number"></p>
+    <p>copy the coupon and paste it in the input field below then click submit</p>
+    <form class="add_coupon_form" action="{% url 'app:coupon' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" name="" value="save coupon">
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+{% endblock %}

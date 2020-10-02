@@ -4,7 +4,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserAdminCreationForm, UserAdminChangeForm
-from .models import Devices, Experiments, Reservation, FAQ
+from .models import Devices, Experiments, Reservation, FAQ, Coupon, Plan, Purchase
+ #  ,Contact_Us
 
 User = get_user_model()
 
@@ -22,7 +23,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('admin', 'staff', 'active')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-       ('Personal Info', {'fields': ('full_name', 'university', 'faculty', 'date_of_birth',)}),
+       ('Personal Info', {'fields': ('full_name', 'university', 'faculty', 'date_of_birth', 'type')}),
         ('Permissions', {'fields': ('admin', 'staff', 'active',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -72,3 +73,32 @@ class FAQAdmin(admin.ModelAdmin):
         model = FAQ
 
 admin.site.register(FAQ, FAQAdmin)
+
+class CouponAdmin(admin.ModelAdmin):
+    search_fields = ['code']
+    class Meta:
+        model = Coupon
+
+admin.site.register(Coupon, CouponAdmin)
+
+class PlanAdmin(admin.ModelAdmin):
+    search_fields = ['plan_name']
+    class Meta:
+        model = Plan
+
+admin.site.register(Plan, PlanAdmin)
+
+class PurchaseAdmin(admin.ModelAdmin):
+    search_fields = ['plan_name']
+    class Meta:
+        model = Purchase
+
+admin.site.register(Purchase, PlanAdmin)
+
+#
+# class ContactUsAdmin(admin.ModelAdmin):
+#     search_fields = ['Subject']
+#     class Meta:
+#         model = Contact_Us
+#
+# admin.site.register(Contact_Us, ContactUsAdmin)

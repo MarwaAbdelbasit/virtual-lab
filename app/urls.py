@@ -15,4 +15,12 @@ urlpatterns = [
     path('Reservation/', views.Reservation, name='Reservation'),
     path('student_interface/', views.student_interface, name='student_interface'),
     path('experiment/', views.Experiment, name='Experiment'),
+    path('addCoupon/', views.addCoupon, name='coupon'),
+    path('addPlan/', views.addPlan, name='addPlan'),
+    path('Pricing/', views.Plan_view, name='Pricing'),
+    path('purchase/', views.purchase_view, name='purchase'),
+    path('getCoupons/', views.getCoupon, name='getcoupon'),
+    path('applyCoupon/', views.apply_coupon, name='applyCoupon'),
 ]
+
+# path('Contact_Us/', views.Contact_Us, name='Contact_Us'),

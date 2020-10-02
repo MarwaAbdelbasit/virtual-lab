@@ -1,0 +1,20 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <div class="Packages">
+    {% for Plan in Plans %}
+    <div class="Package">
+      <h3>{{ Plan.plan_name }}</h3>
+      <h5>Price:</h5>
+      <p>{{ Plan.price }}</p>
+      <p>{{ Plan.feauters_of_plan }}</p>
+    </div>
+    {% endfor %}
+
+    <a href="{% url 'app:purchase' %}">purchase a plan</a>
+
+    <!-- {% if user.is_admin %}
+    <a href="{% url 'app:AddPlan' %}">Add new Plan/a>
+    {% endif %} -->
+  </div>
+{% endblock %}

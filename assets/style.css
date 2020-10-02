@@ -295,3 +295,34 @@ input[type=submit]:focus {
   border-radius: 5px;
   margin: 20px 0 0 0;
 }
+
+
+
+/* Pricing list */
+.Pricing a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+
+/* Contact_Us list */
+.Contact_Us a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+/* admin space */

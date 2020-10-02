@@ -1,0 +1,18 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="addPlan">
+  <form class="addPlan_form" action="{% url 'app:addPlan' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Create plan">
+  </form>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endblock %}

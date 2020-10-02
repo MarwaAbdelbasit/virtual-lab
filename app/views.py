@@ -4,10 +4,13 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.utils.http import is_safe_url
 from . import forms
-from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm, ReserveForm, ExperimentsForm
+from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm, ReserveForm, ExperimentsForm, AddCouponForm, AddPlan, PricingForm, PurchaseForm, ApplyCouponForm
+# ,,Contact_UsForm
 from django.contrib.auth import login, logout
 from .models import  *
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -27,20 +30,21 @@ class Register_view(CreateView):
 
 class Login_view(FormView):
     form_class = LoginForm
-    success_url = '/app/student_interface.html'
+    # success_url = '/home.html'
     template_name = 'app/login.html'
 
     def form_valid(self, form):
         request = self.request
-        # success_url = '/app/dashboard/'
-        next_ = request.GET.get('next')
-        next_post = request.POST.get('next')
-        redirect_path = next_ or next_post or None
+
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
+            success_url = '/'
+            next_ = request.GET.get('next')
+            next_post = request.POST.get('next')
+            redirect_path = next_ or next_post or success_url or None
             try:
                 del request.session['guest_email_id']
             except:
@@ -54,7 +58,7 @@ class Login_view(FormView):
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
-        return redirect('/')
+        return redirect('home')
 
 @login_required(login_url='/app/login/')
 def AddDevice(request):
@@ -116,3 +120,81 @@ def Experiment(request):
     else:
         form = ExperimentsForm()
     return render(request, 'app/experiment.html', {'form': form})
+
+
+def addCoupon(request):
+    if request.method == 'POST':
+        form = AddCouponForm(request.POST)
+        if form.is_valid():
+            # save coupon to db
+            form.save()
+            messages.info(request, 'Your coupon has been saved successfully!')
+    else:
+        form = AddCouponForm()
+    return render(request, 'app/addCoupon.html', {'form': form})
+
+def addPlan(request):
+    if request.method == 'POST':
+        form = AddPlan(request.POST)
+        if form.is_valid():
+            # save coupon to db
+            form.save()
+            messages.info(request, 'Your plan has been saved successfully!')
+    else:
+        form = AddPlan()
+    return render(request, 'app/addPlan.html', {'form': form})
+
+
+#View of pricing
+def Plan_view(request):
+   Plans = Plan.objects.all()
+   return render(request, 'app/Pricing.html', {'Plans':Plans})
+
+
+# purchase view
+def purchase_view(request):
+    if request.method == 'POST':
+        form = PurchaseForm(request.POST)
+        if form.is_valid():
+            # save order to db
+            instance_of_purchase = form.save(commit=False)
+            instance_of_purchase.institute = request.user
+            instance_of_purchase.save()
+            messages.info(request, 'Your order has been saved successfully!')
+    else:
+        form = PurchaseForm()
+    return render(request, 'app/purchase.html', {'form': form})
+
+def getCoupon(request):
+    coupons = Coupon.objects.all()
+    # purchases = Purchase.objects.filter(institute = User.email)
+    return render(request, 'app/getCoupon.html', {'coupons': coupons})
+
+
+def apply_coupon(request):
+    if request.method == 'POST':
+        form = ApplyCouponForm(request.POST)
+        if form.is_valid():
+            # code_entered = request.POST.get('code')
+            code_entered = form.cleaned_data['code']
+            is_available = Coupon.objects.get(code=code_entered).exists()
+            is_active = Coupon.objects.get(active=True).exists()
+            if is_available & is_active:
+                messages.info(request, 'Your coupon is verified!')
+            else:
+                messages.info(request, 'Your coupon is not verified!')
+    else:
+        form = ApplyCouponForm()
+    return render(request, 'app/applyCoupon.html', {'form': form})
+
+# #View of Contact us
+# def Contact_Us(request):
+#     if request.method == 'POST':
+#         form = Contact_UsForm(request.POST)
+#         if form.is_valid():
+#             # save account to database
+#             form.save()
+#             return redirect('home')
+#     else:
+#         form = Contact_UsForm()
+#     return render(request, 'app/Contact_Us.html', {'form': form})

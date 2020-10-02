@@ -1,0 +1,18 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="applyCoupon">
+  <form class="applyCoupon_form" action="{% url 'app:applyCoupon' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="verify">
+  </form>
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

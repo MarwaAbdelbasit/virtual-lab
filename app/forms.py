@@ -18,7 +18,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'email', 'university', 'faculty', 'date_of_birth', ) # if you have more fields that email and password
+        fields = ('full_name', 'email', 'university', 'faculty', 'date_of_birth', 'type',) # if you have more fields that email and password
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -46,7 +46,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'email', 'password', 'university', 'faculty', 'date_of_birth', 'active', 'admin')
+        fields = ('full_name', 'email', 'password', 'university', 'faculty', 'date_of_birth', 'active', 'admin', 'type',)
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -66,7 +66,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'email', 'university', 'faculty', 'date_of_birth',) # if you have more fields that email and password
+        fields = ('full_name', 'email', 'university', 'faculty', 'date_of_birth', 'type',) # if you have more fields that email and password
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -125,3 +125,46 @@ class ExperimentsForm(forms.ModelForm):
     class Meta:
         model = Experiments
         fields = ('title', 'description', 'experiment_id', 'device_name', 'duration')
+
+
+
+# Pricing form
+class PricingForm(forms.ModelForm):
+    class Meta:
+        model = Plan
+        fields = ('plan_name', 'price', 'feauters_of_plan')
+
+
+# # ContactUs form
+# class Contact_UsForm(forms.ModelForm):
+#     class Meta:
+#         model = Contact_Us
+#         fields = ('Subject', 'Message')
+
+
+# AddPlan form
+class AddPlan(forms.ModelForm):
+    class Meta:
+        model = Plan
+        fields = ('plan_name', 'price', 'feauters_of_plan', 'number_of_coupons')
+
+
+# add coupon form
+class AddCouponForm(forms.ModelForm):
+    code = forms.CharField(max_length=4000)
+    class Meta:
+        model = Coupon
+        fields = ('code', 'active')
+
+class ApplyCouponForm(forms.ModelForm):
+    code = forms.CharField()
+    class Meta:
+        model = Coupon
+        fields = ('code',)
+
+
+# purchase a plan form
+class PurchaseForm(forms.ModelForm):
+    class Meta:
+        model = Purchase
+        fields = ('plan_name', 'payment_option')

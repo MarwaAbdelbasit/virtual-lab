@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="{% url 'home_page' %}">Virtual Lab</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Virtual Lab</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -26,9 +26,7 @@
         <li class="nav-item">
           <a href="{% url 'app:faq' %}" class="nav-link"> FAQ</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
+
       </ul>
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
