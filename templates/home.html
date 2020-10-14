@@ -18,22 +18,41 @@
     {% endif %}
 
     {% if user.is_institute %}
-    <div class="container">
-      <div class="card-deck">
-      <div class="card">
-        <div class="card-body myCard">
-          <h5 class="card-title">Pricing</h5>
-          <a href="{% url 'app:Pricing' %}">Choose a plan</a>
+      {% if user.has_baught_plan %}
+      <div class="container">
+        <div class="card-deck">
+        <div class="card">
+          <div class="card-body myCard">
+            <h5 class="card-title">Get your coupons</h5>
+            <a href="{% url 'app:getcoupon' %}">get coupons</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body myCard">
+            <h5 class="card-title">Browse devices</h5>
+            <a href="{% url 'app:devices' %}">Devices</a>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body myCard">
-          <h5 class="card-title">Browse devices</h5>
-          <a href="{% url 'app:devices' %}">Devices</a>
+      </div>
+      {% else %}
+      <div class="container">
+        <div class="card-deck">
+        <div class="card">
+          <div class="card-body myCard">
+            <h5 class="card-title">Pricing</h5>
+            <a href="{% url 'app:Pricing' %}">Choose a plan</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body myCard">
+            <h5 class="card-title">Browse devices</h5>
+            <a href="{% url 'app:devices' %}">Devices</a>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+      </div>
+      {% endif %}
     {% endif %}
 
     {% if user.is_admin %}

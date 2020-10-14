@@ -79,6 +79,7 @@ class User(AbstractBaseUser):
         (ADMIN, 'Admin'),
     ]
     type = models.CharField(max_length=1, choices=user_types, default=STUDENT, null=True)
+    paid = models.BooleanField(default=False)
 
     timestamp = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True) # can login
@@ -109,6 +110,9 @@ class User(AbstractBaseUser):
         if self.date_of_birth:
             return self.date_of_birth
         return self.email
+
+    def has_baught_plan(self):
+        return self.paid
 
     def short_name(self):
         return self.email

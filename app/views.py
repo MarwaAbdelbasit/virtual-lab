@@ -116,7 +116,7 @@ def Experiment(request):
             instance_of_experiment = form.save(commit=False)
             instance_of_experiment.user_exp = request.user
             instance_of_experiment.save()
-            return redirect('home')
+            return redirect('app:workSpace')
     else:
         form = ExperimentsForm()
     return render(request, 'app/experiment.html', {'form': form})
@@ -159,6 +159,7 @@ def purchase_view(request):
             # save order to db
             instance_of_purchase = form.save(commit=False)
             instance_of_purchase.institute = request.user
+            request.paid = True
             instance_of_purchase.save()
             messages.info(request, 'Your order has been saved successfully!')
     else:
@@ -186,6 +187,8 @@ def apply_coupon(request):
     #     form = ApplyCouponForm()
     return render(request, 'app/applyCoupon.html', {'form': form})
 
+def work_space_view(request):
+    return render(request, 'app/work_space.html')
 
 # #View of Contact us
 # def Contact_Us(request):

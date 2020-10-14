@@ -1,0 +1,81 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<style media="screen">
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .documents {
+    margin-right: 10rem;
+    background-color: #ebd4d4;
+    height: 20rem;
+    padding: 30px;
+    color: #333;
+    border-radius: 10px;
+  }
+
+  .code {
+    height: 20rem;
+    width: 40rem;
+  }
+
+  .code .compileButton {
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    background-color: var(--purple-color);
+    color: #fff;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+  }
+
+  .code .uploadButton {
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    background-color: #A87FAE;
+    color: #fff;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+  }
+
+  .code .code_area,
+  .code .console {
+    border: 3px solid #333;
+    border-radius: 10px;
+    height: inherit;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  .code .console {
+    height: 10rem;
+    background-color: #eee;
+  }
+</style>
+
+<div class="top">
+  <div class="documents">
+      <h5>Documents about the device</h5>
+      <ul>
+        <li>document number 1</li>
+        <li>document number 2</li>
+        <li>document number 3</li>
+      </ul>
+  </div>
+  <div class="code">
+    <button type="button" class="compileButton" name="button">compile and run</button>
+    <button type="button" class="uploadButton" name="button">upload to device</button>
+    <div class="code_area">
+      this is where you write your code
+    </div>
+    <div class="console">
+      <p>this is console area</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
