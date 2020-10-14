@@ -156,6 +156,7 @@ class AddCouponForm(forms.ModelForm):
         model = Coupon
         fields = ('code', 'active')
 
+# apply coupon form
 class ApplyCouponForm(forms.ModelForm):
     code = forms.CharField()
     class Meta:

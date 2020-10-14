@@ -172,20 +172,20 @@ def getCoupon(request):
 
 
 def apply_coupon(request):
-    if request.method == 'POST':
-        form = ApplyCouponForm(request.POST)
-        if form.is_valid():
-            # code_entered = request.POST.get('code')
-            code_entered = form.cleaned_data['code']
-            is_available = Coupon.objects.get(code=code_entered).exists()
-            is_active = Coupon.objects.get(active=True).exists()
-            if is_available & is_active:
-                messages.info(request, 'Your coupon is verified!')
-            else:
-                messages.info(request, 'Your coupon is not verified!')
-    else:
-        form = ApplyCouponForm()
+    # if request.method == 'GET':
+    form  = ApplyCouponForm(request.GET)
+    #     if form.is_valid():
+    code_entered = request.GET.get('code')
+    coupon = Coupon.objects.filter(code = code_entered).first()
+    is_available = True if coupon else False
+    is_active = coupon.active if coupon else False
+    if is_available and is_active:
+        # messages.info(request, 'Your coupon is verified!')
+        return redirect('app:student_interface')
+    # else:
+    #     form = ApplyCouponForm()
     return render(request, 'app/applyCoupon.html', {'form': form})
+
 
 # #View of Contact us
 # def Contact_Us(request):

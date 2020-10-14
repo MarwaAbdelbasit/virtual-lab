@@ -17,6 +17,9 @@ input[type=submit]:focus {
   outline: none;
 }
 
+.errorlist {
+  visibility: hidden;
+}
 
 /* login form */
 .login .login_form {
@@ -212,6 +215,23 @@ input[type=submit]:focus {
 
 
 /* reservation form */
+.reservation_container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.Reservation {
+   width: 50%;
+   float: left;
+}
+
+.coupon {
+  width: 30%;
+  float: right;
+}
+
 .Reservation .Reservation_form {
   display: flex;
   flex-direction: column;
@@ -326,3 +346,22 @@ input[type=submit]:focus {
 
 
 /* admin space */
+
+
+/* Packages or plans page */
+
+
+/* purchase.html */
+.purchase .purchase_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+
+/* addplan.html */
+.addPlan .addPlan_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}

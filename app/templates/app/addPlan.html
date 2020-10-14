@@ -1,6 +1,40 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
+<style media="screen">
+  .addPlan_form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .addPlan_form label {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .addPlan_form select,
+  .addPlan_form input[type=text],
+  .addPlan_form textarea,
+  .addPlan_form input[type=number] {
+    border: none;
+    border-bottom: 1px solid var(--purple-color);
+    margin-bottom: 10px;
+    width: 60%;
+  }
+
+  .addPlan_form input[type=submit] {
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    background-color: var(--purple-color);
+    color: #fff;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+  }
+
+</style>
 <div class="addPlan">
   <form class="addPlan_form" action="{% url 'app:addPlan' %}" method="post">
     {% csrf_token %}
