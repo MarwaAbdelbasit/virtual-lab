@@ -243,3 +243,14 @@ class Purchase(models.Model):
 
     def get_plan_name(self):
         return self.plan_name
+
+
+
+# Contact model
+class Contact_Us(models.Model):
+    Subject = models.CharField(max_length=100)
+    Message = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return f'{self.Subject} and {self.message}'

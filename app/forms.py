@@ -135,11 +135,11 @@ class PricingForm(forms.ModelForm):
         fields = ('plan_name', 'price', 'feauters_of_plan')
 
 
-# # ContactUs form
-# class Contact_UsForm(forms.ModelForm):
-#     class Meta:
-#         model = Contact_Us
-#         fields = ('Subject', 'Message')
+# ContactUs form
+class Contact_UsForm(forms.ModelForm):
+    class Meta:
+        model = Contact_Us
+        fields = ('Subject', 'Message')
 
 
 # AddPlan form

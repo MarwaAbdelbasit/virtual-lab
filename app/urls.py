@@ -22,6 +22,5 @@ urlpatterns = [
     path('getCoupons/', views.getCoupon, name='getcoupon'),
     path('applyCoupon/', views.apply_coupon, name='applyCoupon'),
     path('workSpace/', views.work_space_view, name='workSpace'),
+    path('Contact_Us/', views.Contact_Us, name='Contact_Us'),
 ]
-
-# path('Contact_Us/', views.Contact_Us, name='Contact_Us'),

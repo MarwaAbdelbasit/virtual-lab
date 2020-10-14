@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserAdminCreationForm, UserAdminChangeForm
-from .models import Devices, Experiments, Reservation, FAQ, Coupon, Plan, Purchase
+from .models import Devices, Experiments, Reservation, FAQ, Coupon, Plan, Purchase, Contact_Us
  #  ,Contact_Us
 
 User = get_user_model()
@@ -95,10 +95,10 @@ class PurchaseAdmin(admin.ModelAdmin):
 
 admin.site.register(Purchase, PlanAdmin)
 
-#
-# class ContactUsAdmin(admin.ModelAdmin):
-#     search_fields = ['Subject']
-#     class Meta:
-#         model = Contact_Us
-#
-# admin.site.register(Contact_Us, ContactUsAdmin)
+
+class ContactUsAdmin(admin.ModelAdmin):
+    search_fields = ['Subject']
+    class Meta:
+        model = Contact_Us
+
+admin.site.register(Contact_Us, ContactUsAdmin)

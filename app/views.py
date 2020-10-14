@@ -4,8 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.utils.http import is_safe_url
 from . import forms
-from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm, ReserveForm, ExperimentsForm, AddCouponForm, AddPlan, PricingForm, PurchaseForm, ApplyCouponForm
-# ,,Contact_UsForm
+from .forms import RegisterForm, LoginForm, AddDeviceForm, AddQForm, ReserveForm, ExperimentsForm, AddCouponForm, AddPlan, PricingForm, PurchaseForm, ApplyCouponForm, Contact_UsForm
 from django.contrib.auth import login, logout
 from .models import  *
 from django.contrib.auth.decorators import login_required
@@ -190,14 +189,14 @@ def apply_coupon(request):
 def work_space_view(request):
     return render(request, 'app/work_space.html')
 
-# #View of Contact us
-# def Contact_Us(request):
-#     if request.method == 'POST':
-#         form = Contact_UsForm(request.POST)
-#         if form.is_valid():
-#             # save account to database
-#             form.save()
-#             return redirect('home')
-#     else:
-#         form = Contact_UsForm()
-#     return render(request, 'app/Contact_Us.html', {'form': form})
+#View of Contact us
+def Contact_Us(request):
+    if request.method == 'POST':
+        form = Contact_UsForm(request.POST)
+        if form.is_valid():
+            # save account to database
+            form.save()
+            return redirect('home')
+    else:
+        form = Contact_UsForm()
+    return render(request, 'app/Contact_Us.html', {'form': form})
