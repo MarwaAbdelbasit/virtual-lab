@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <div class="register">
+    <form class="register_form" action="{% url 'app:register' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <p>date of birth in the formate (yyyy-mm-dd)</p>
+      <input type="submit" value="Register">
+    </form>
+  </div>
+{% endblock %}

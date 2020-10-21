@@ -1,0 +1,47 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<style media="screen">
+  .ContactUs .ContactUs_form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .ContactUs_form label {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .ContactUs_form input[type=text] {
+    border: none;
+    border-bottom: 1px solid var(--purple-color);
+    margin-bottom: 10px;
+    width: 60%;
+  }
+
+  .ContactUs_form input[type=submit] {
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    background-color: var(--purple-color);
+    color: #fff;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+  }
+</style>
+
+  <div class="ContactUs">
+    <h1>Send A message</h1>
+    <form class="ContactUs_form" action="{% url 'app:Contact_Us' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Send">
+          <h2>How to Reach Us</h2>
+          <h7>Vlab@example.com</h7>
+          <h7>01105*****</h7>
+    </form>
+  </div>
+{% endblock %}

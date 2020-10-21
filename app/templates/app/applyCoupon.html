@@ -1,0 +1,43 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<style media="screen">
+  .applyCoupon_form label {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .applyCoupon_form input[type=text] {
+    border: none;
+    border-bottom: 1px solid var(--purple-color);
+    margin-bottom: 10px;
+    width: 60%;
+  }
+
+  .applyCoupon_form input[type=submit] {
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    background-color: var(--purple-color);
+    color: #fff;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+  }
+
+</style>
+<div class="applyCoupon">
+  <form class="applyCoupon_form" action="{% url 'app:applyCoupon' %}" method="get">
+    <!-- {% csrf_token %} -->
+    {{ form }}
+    <input type="submit" value="verify">
+  </form>
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

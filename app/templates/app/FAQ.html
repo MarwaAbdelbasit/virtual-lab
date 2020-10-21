@@ -1,0 +1,18 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <div class="questions">
+    {% for faq in faqs %}
+    <div class="question">
+      <h3>Qusetion number ({{ faq.question_id }}):</h3>
+      <p>{{ faq.Question }}</p>
+      <h5>Answer:</h5>
+      <p>{{ faq.Answer }}</p>
+    </div>
+    {% endfor %}
+
+    {% if user.is_admin %}
+    <a href="{% url 'app:AddQuestion' %}">Add new Question</a>
+    {% endif %}
+  </div>
+{% endblock %}

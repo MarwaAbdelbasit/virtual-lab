@@ -1,0 +1,28 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="devices">
+  {% for device in devices %}
+  <div class="device">
+    <img src="{{ device.image.url }}" style="max-height:200px; max-width:200px;">
+    <h2>{{ device.name }}</h2>
+    <p>{{ device.description }}</p>
+    <p>{{ device.rate }} / 10</p>
+  </div>
+  {% endfor %}
+
+  {% if user.is_admin %}
+  <a href="{% url 'app:AddDevice' %}">Add new Device</a>
+  {% endif %}
+</div>
+
+<div class="experiments">
+  {% for experiment in experiments %}
+  <div class="experiment">
+    <h2><a href="#">{{ experiment.title }}</a></h2>
+    <p>{{ experiment.description }}</p>
+    <p>{{ experiment.duration }} / 10</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="Packages card-deck">
+      {% for Plan in Plans %}
+      <div class="Package card">
+        <div class="card-body">
+          <h3>{{ Plan.plan_name }}</h3>
+          <span class="badge badge-dark">Price:</span>
+          <span>{{ Plan.price }}</span>
+          <br>
+          <br>
+          <ul style="list-style-type: none;">
+            <li><i class='bx bxs-badge-check bx-tada bx-rotate-90' style='color:#83498c' ></i>{{ Plan.feauters_of_plan }}</li>
+          </ul>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    <br>
+    <br>
+    <div>
+      <a id="purchasePlan" href="{% url 'app:purchase' %}" style="
+      text-decoration: none;
+      background-color: #83498c;
+      color: #fff;
+      padding: 10px 30px;
+      margin-top: 30px;
+      border-radius: 5px;">purchase a plan</a>
+    </div>
+  </div>
+
+{% endblock %}

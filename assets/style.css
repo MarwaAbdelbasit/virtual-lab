@@ -1,0 +1,367 @@
+/* colors */
+:root {
+  --purple-color: #83498c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+textarea:focus,
+input[type=submit]:focus {
+  outline: none;
+}
+
+.errorlist {
+  visibility: hidden;
+}
+
+/* login form */
+.login .login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.login_form label {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login_form input[type=email],
+.login_form input[type=password] {
+  overflow: visible;
+  padding: 5px 20px;
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+}
+
+.login_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+
+/* logout button */
+.logout_form .logout_button {
+  border: none;
+  background: none;
+  margin-left: 25px;
+}
+
+
+
+/* registeration form */
+.register .register_form{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.register_form label{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.register_form input[type=text],
+.register_form input[type=email],
+.register_form input[type=password] {
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.register_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+/* add a question form */
+.faq .AddQ_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.AddQ_form label {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.AddQ_form input[type=text],
+.AddQ_form textarea {
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.AddQ_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+
+
+/* questions list */
+.questions a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+
+/* Devices list */
+.devices a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+
+/* add a device form */
+.AddDevice .AddDevice_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.AddDevice_form label {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.AddDevice_form input[type=text],
+.AddDevice_form input[type=number],
+.AddDevice_form textarea {
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.AddDevice_form input[type=file],
+.AddDevice_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+
+
+/* intro part of home page */
+.intro {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.intro .left a {
+  text-decoration: none;
+  background-color: var(--purple-color);
+  color: #fff;
+  padding: 10px 30px;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.intro .left a:hover {
+  box-shadow: 0px 0px 10px 0px #999;
+}
+
+
+
+/* reservation form */
+.reservation_container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.Reservation {
+   width: 50%;
+   float: left;
+}
+
+.coupon {
+  width: 30%;
+  float: right;
+}
+
+.Reservation .Reservation_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.Reservation_form label {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Reservation_form select,
+.Reservation_form input[type=text] {
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.Reservation_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+
+
+/* student interface */
+.myCard a {
+  text-decoration: none;
+  background-color: var(--purple-color);
+  color: #fff;
+  padding: 10px 30px;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.myCard a:hover {
+  box-shadow: 0px 0px 10px 0px #999;
+  text-decoration: none;
+}
+
+
+
+/* experiment form */
+.experiment .experiment_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.experiment_form label {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.experiment_form input[type=text],
+.experiment_form input[type=number],
+.experiment_form textarea,
+.experiment_form select {
+  border: none;
+  border-bottom: 1px solid var(--purple-color);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.experiment_form input[type=submit] {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+}
+
+
+
+/* Pricing list */
+.Pricing a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+
+/* Contact_Us list */
+.Contact_Us a {
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  background-color: var(--purple-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+
+/* admin space */
+
+
+/* Packages or plans page */
+
+
+/* purchase.html */
+.purchase .purchase_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+
+/* addplan.html */
+.addPlan .addPlan_form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}

@@ -1,0 +1,15 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="coupons">
+  {% if True %}
+  <p>10 coupons</p>
+  {% endif %}
+  {% for coupon in coupons|slice:":10" %}
+  <div class="coupon">
+    <p>{{coupon.code}}</p>
+  </div>
+  {% endfor %}
+  <p></p>
+</div>
+{% endblock %}

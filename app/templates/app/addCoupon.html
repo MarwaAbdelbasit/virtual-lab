@@ -1,0 +1,62 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<style media="screen">
+  .add_coupon_form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .add_coupon_form label {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .add_coupon_form input[type=text] {
+    border: none;
+    border-bottom: 1px solid var(--purple-color);
+    margin-bottom: 10px;
+    width: 60%;
+  }
+
+  .generateCouponButton,
+  .add_coupon_form input[type=submit] {
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    background-color: var(--purple-color);
+    color: #fff;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+  }
+
+  #random_number {
+    font-size: 30px;
+  }
+
+</style>
+
+  <div class="addCoupon">
+    <button class="generateCouponButton" onclick="generate_random_number()">Generate a coupon</button>
+    <div>
+      <i class='bx bxs-chevron-right bx-flashing bx-rotate-90' style='color:#83498c; font-size:60px;' ></i>
+      <p id="random_number"></p>
+    </div>
+
+    <p>copy the coupon and paste it in the input field below then click submit</p>
+    <form class="add_coupon_form" action="{% url 'app:coupon' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" name="" value="save coupon">
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+{% endblock %}
